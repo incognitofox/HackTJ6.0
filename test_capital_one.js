@@ -1,7 +1,7 @@
 var request = require('request');
 
 
-url = 'http://api.reimaginebanking.com/customers/5ca8cbfe322fa06b67794a72/accounts?key=058f0d09f1c7fb96ee5ab713535c07ce'
+url = 'http://api.reimaginebanking.com/customers/customerkey/accounts?key=apikey}'
 function each_helper(elem) {
   console.log(elem.balance);
 }
