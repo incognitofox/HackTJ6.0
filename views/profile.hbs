@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/homepage.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav id="nav" class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #00000;">  
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">how can we help today?</a>
+    </div>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#section1">MY BALANCE</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section2">THIS MONTH'S BUDGET</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section3">UPLOAD PURCHASE</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#section4">INVEST</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/home">EXIT</a>
+    </li>
+  </ul>
+</nav>
+
+<div id="section1" class="container-fluid" style="padding-top:110px;padding-bottom:70px">
+  <h1 id="black-text">hello {{user}}</h1>
+  <h4 id="black-text">your current balance is: {{balance}}</h4>
+</div>
+<div id="section2" class="container-fluid bg-dark" style="padding-top:70px;padding-bottom:70px">
+  <h1 id='budget'>your budget is: $300</h1>
+  <h4 id="display3"><h4>
+</div>
+<div id="section3" class="container-fluid" style="padding-top:70px;padding-bottom:70px">
+  <h1 id="black-text">what did you buy today?</h1>
+  <button class="btn btn-light" onclick="click()">take a snapshot</button>
+  <br>
+  <br>
+  <video id="vid"></video>
+  <script type='text/javascript' src="js/capture.js"></script>
+  <h4 id="display"></h4>
+</div>
+<div id="section4" class="container-fluid bg-secondary" style="padding-top:70px;padding-bottom:70px">
+  <h1>let's invest</h1>
+  <button class="btn btn-light" onclick="doAjax2()">Check Investments</button>
+  <br>
+  <br>
+  <h4 id="display2"></h4>
+</div>  
+<div id="section5" class="container-fluid bg-light" style="padding-top:70px;padding-bottom:30px">
+  <h4 id="black-text">developed by<br> steven le, sibtain hussain, william wang, hari shanmugaraja</h4>
+  <h4 id="black-text">powered by</h4>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/1280px-Capital_One_logo.svg.png" style="width:150px;height:50px;"></img>
+  <img src="https://www.zenoss.com/sites/default/files/googlecloud-logo-a.png" style="width:175px;height:75px;"></img>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+    
+	function doAjax() {
+	    document.getElementById('display').innerHTML ="loading your results..."
+		$.get({
+			url: 'vision_endpoint',
+			data: {},
+			success: function(data){
+				n=data;
+				document.getElementById('display').innerHTML = "you spent $" + data
+			},
+			error: function(data){
+            document.getElementById('display').innerHTML = "we encountered a problem"
+			}
+		});
+    }
+
+	function doAjax2() {
+	    document.getElementById('display2').innerHTML ="loading your results..."
+		$.get({
+			url: 'stockresult',
+			data: {},
+			success: function(data){
+				n=data;
+				document.getElementById('display2').innerHTML = "based off of the change you have amassed so far, we reccomend Kodak (KODK) stock which traded at a low of $"+ data.substring(0,4);
+			},
+			error: function(data){
+            document.getElementById('display2').innerHTML = "we encountered a problem"
+			}
+		});
+    }
+	</script>
+
+</body>
+</html>
